@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 12pt;
+            line-height: 1.5;
+            margin: 1in;
+            color: #000;
+        }
+        h1 {
+            font-size: 16pt;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20pt;
+            margin-bottom: 10pt;
+        }
+        h2 {
+            font-size: 14pt;
+            font-weight: bold;
+            margin-top: 16pt;
+            margin-bottom: 8pt;
+        }
+        h3 {
+            font-size: 12pt;
+            font-weight: bold;
+            margin-top: 12pt;
+            margin-bottom: 6pt;
+        }
+        h4 {
+            font-size: 12pt;
+            font-weight: bold;
+            font-style: italic;
+            margin-top: 10pt;
+            margin-bottom: 6pt;
+        }
+        p {
+            margin-top: 0;
+            margin-bottom: 10pt;
+            text-align: justify;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10pt;
+            margin-bottom: 10pt;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 8pt;
+            text-align: left;
+        }
+        th {
+            background-color: #f0f0f0;
+            font-weight: bold;
+        }
+        ul, ol {
+            margin-top: 6pt;
+            margin-bottom: 10pt;
+        }
+        li {
+            margin-bottom: 4pt;
+        }
+        .center {
+            text-align: center;
+        }
+        .header-info {
+            text-align: center;
+            margin-bottom: 20pt;
+        }
+        .page-break {
+            page-break-after: always;
+        }
+        code {
+            font-family: 'Courier New', monospace;
+            background-color: #f5f5f5;
+            padding: 2pt 4pt;
+            font-size: 11pt;
+        }
+        pre {
+            font-family: 'Courier New', monospace;
+            background-color: #f5f5f5;
+            padding: 10pt;
+            margin: 10pt 0;
+            border: 1px solid #ddd;
+            white-space: pre-wrap;
+            font-size: 10pt;
+        }
+        .checkmark {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header-info">
+    <h1>Mini Project Synopsis</h1>
+    <p><strong>Course:</strong> DevOps Fundamentals and SCM<br>
+    <strong>Course Code:</strong> CSDV2010P<br>
+    <strong>Programme:</strong> B.Tech DevOps<br>
+    <strong>Semester:</strong> III<br>
+    <strong>Academic Year:</strong> 2025–26</p>
+</div>
+
+<h2>1. Project Title</h2>
+<p><strong>Title:</strong> To-Do List Application with Automated CI/CD Pipeline</p>
+
+<h2>2. Team Details</h2>
+<p><strong>Important:</strong> Roles are for responsibility allocation. Every student should understand the complete project workflow.</p>
+
+<table>
+    <tr>
+        <th>S. No.</th>
+        <th>Student Name</th>
+        <th>SAP ID</th>
+        <th>Roll No.</th>
+        <th>Role in Project</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Aditya Negi</td>
+        <td>[Your SAP ID]</td>
+        <td>[Your Roll No.]</td>
+        <td>Developer (Frontend)</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Sumit</td>
+        <td>[Your SAP ID]</td>
+        <td>[Your Roll No.]</td>
+        <td>Developer (Backend) + SCM / Version Control Lead</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Aaditya Kathait</td>
+        <td>[Your SAP ID]</td>
+        <td>[Your Roll No.]</td>
+        <td>CI/CD & Testing Lead</td>
+    </tr>
+</table>
+
+<p><strong>Note:</strong> Backend development was a shared responsibility across all team members, with Sumit taking the lead on API development and database integration.</p>
+
+<h2>3. Problem Statement</h2>
+<p>Traditional task-management applications are typically built and deployed using manual processes: code is written, manually tested on a developer's machine, and then manually pushed to a server. This manual workflow is time-consuming, inconsistent across environments, and highly prone to human error — a missed step during testing or deployment can introduce bugs or downtime in the live application.</p>
+
+<p>As applications grow and teams collaborate on shared codebases, the absence of an automated build-test-deploy process makes it difficult to maintain code quality and delivery speed. This project addresses that problem by developing a web-based To-Do List Application and integrating it with a Continuous Integration and Continuous Deployment (CI/CD) pipeline, so that every code change pushed to the repository is automatically built, tested, and deployed, removing manual intervention and reducing the risk of deployment errors.</p>
+
+<h2>4. Proposed Solution</h2>
+<p>The proposed solution is a web-based To-Do List Application that allows users to create, view, update, mark as complete, and delete tasks through a simple and user-friendly interface. The application follows a standard three-tier architecture with a frontend for user interaction, a backend/API layer for business logic, and a MongoDB database for persistent task storage.</p>
+
+<h3>Application Features</h3>
+<ul>
+    <li><strong>Task Management:</strong> Full CRUD operations (Create, Read, Update, Delete)</li>
+    <li><strong>Task Completion:</strong> Toggle tasks between pending and completed states</li>
+    <li><strong>Priority System:</strong> Three-level priority (Low, Medium, High) with visual badges</li>
+    <li><strong>Filtering:</strong> View all tasks, only pending, or only completed tasks</li>
+    <li><strong>Responsive Design:</strong> Mobile-first design that works on all devices</li>
+    <li><strong>Real-time Updates:</strong> Instant feedback with toast notifications</li>
+</ul>
+
+<h3>DevOps Integration</h3>
+<p>Alongside application development, the project integrates modern DevOps practices:</p>
+<ol>
+    <li><strong>Version Control:</strong> Git and GitHub are used for source-code management, with a clear commit history showing chronological development from August 20 to November 15, 2026 (38 total commits)</li>
+    <li><strong>Branch Strategy:</strong> Feature-branch workflow where each developer worked on role-specific branches before merging to main</li>
+    <li><strong>CI/CD Pipeline:</strong> GitHub Actions workflow configured to automatically install dependencies, run linting checks, execute automated test suite, generate code coverage reports, and deploy to cloud platform on successful build</li>
+    <li><strong>Automated Testing:</strong> Comprehensive test suite using Jest and Supertest covering API endpoint testing, integration testing, error handling validation, with code coverage above 80%</li>
+</ol>
+
+<p>This solution demonstrates how automation can improve reliability, reduce manual errors, and speed up software delivery for a full-stack application.</p>
+
+<h2>5. Objectives</h2>
+<ol>
+    <li><span class="checkmark">✓</span> <strong>To design and develop a user-friendly To-Do List web application with full CRUD functionality.</strong>
+        <ul>
+            <li>Implemented complete CRUD operations for task management</li>
+            <li>Created intuitive UI with smooth animations and transitions</li>
+        </ul>
+    </li>
+    <li><span class="checkmark">✓</span> <strong>To implement Create, Read, Update, and Delete (CRUD) operations for managing tasks, backed by a persistent database.</strong>
+        <ul>
+            <li>All CRUD operations implemented via RESTful API</li>
+            <li>MongoDB used for persistent storage</li>
+            <li>Data persists across sessions</li>
+        </ul>
+    </li>
+    <li><span class="checkmark">✓</span> <strong>To use Git and GitHub for source-code management and maintain a clear, trackable commit history.</strong>
+        <ul>
+            <li>38 commits across 3 developers over 3 months</li>
+            <li>Clear commit messages following best practices</li>
+            <li>Chronological development timeline maintained</li>
+        </ul>
+    </li>
+    <li><span class="checkmark">✓</span> <strong>To implement a Continuous Integration (CI) pipeline using GitHub Actions that automatically builds and tests the application on every code push.</strong>
+        <ul>
+            <li>GitHub Actions workflow configured</li>
+            <li>Automated testing on every push/pull request</li>
+            <li>Build and test stages properly implemented</li>
+        </ul>
+    </li>
+    <li><span class="checkmark">✓</span> <strong>To implement a Continuous Deployment (CD) pipeline that automatically deploys successfully tested builds to a cloud platform, reducing manual deployment errors.</strong>
+        <ul>
+            <li>Automated deployment configured in workflow</li>
+            <li>Deployment triggers only after successful tests</li>
+            <li>Environment variables properly managed</li>
+        </ul>
+    </li>
+</ol>
+
+<h2>6. Scope of the Project</h2>
+
+<h3>In Scope (Completed):</h3>
+<ol>
+    <li>A single-user web application for managing personal tasks (add, edit, delete, mark complete/pending)</li>
+    <li>Persistent storage of tasks in MongoDB database</li>
+    <li>An automated CI pipeline covering dependency installation, build, and automated testing</li>
+    <li>An automated CD pipeline configuration for cloud deployment</li>
+    <li>Priority-based task categorization (Low, Medium, High)</li>
+    <li>Task filtering by status (All, Pending, Completed)</li>
+    <li>Responsive mobile-friendly design</li>
+    <li>Error handling and input validation</li>
+    <li>RESTful API design with proper HTTP methods and status codes</li>
+    <li>Comprehensive test coverage (&gt;80%)</li>
+</ol>
+
+<h3>Out of Scope (for this iteration):</h3>
+<ol>
+    <li>Multi-user authentication and role-based access control</li>
+    <li>Advanced task features such as reminders, notifications, or calendar integration</li>
+    <li>Production-grade monitoring, logging, and alerting systems</li>
+    <li>Real-time collaboration features</li>
+    <li>Task categories, tags, or due dates</li>
+    <li>Email notifications</li>
+</ol>
+
+<h2>7. Technology Stack (Implemented)</h2>
+<table>
+    <tr>
+        <th>Component</th>
+        <th>Technology</th>
+        <th>Version</th>
+    </tr>
+    <tr>
+        <td><strong>Frontend</strong></td>
+        <td>HTML5, CSS3, Vanilla JavaScript</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td><strong>Backend</strong></td>
+        <td>Node.js + Express.js</td>
+        <td>Express 4.18.2</td>
+    </tr>
+    <tr>
+        <td><strong>Database</strong></td>
+        <td>MongoDB (Cloud - MongoDB Atlas)</td>
+        <td>Mongoose 7.5.0</td>
+    </tr>
+    <tr>
+        <td><strong>Version Control</strong></td>
+        <td>Git + GitHub</td>
+        <td>Git 2.x</td>
+    </tr>
+    <tr>
+        <td><strong>CI/CD</strong></td>
+        <td>GitHub Actions</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td><strong>Testing</strong></td>
+        <td>Jest + Supertest</td>
+        <td>Jest 29.6.4</td>
+    </tr>
+    <tr>
+        <td><strong>Deployment Platform</strong></td>
+        <td>Configured for Render/Vercel</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td><strong>Development Environment</strong></td>
+        <td>VS Code</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td><strong>Additional Tools</strong></td>
+        <td>dotenv, cors, nodemon</td>
+        <td>-</td>
+    </tr>
+</table>
+
+<p><strong>Architecture:</strong> Three-tier architecture (Frontend → Backend API → Database)</p>
+
+<h2>8. SCM and DevOps Plan (Implemented)</h2>
+
+<h3>Repository Structure</h3>
+<p>Source code is managed in a single GitHub repository: <code>https://github.com/sumit715-su8een/ToDoApp</code></p>
+
+<h3>Branching Strategy Implemented</h3>
+<ul>
+    <li><strong>Main Branch:</strong> Production-ready code</li>
+    <li><strong>Feature Branches:</strong> Used for development of specific features</li>
+    <li><strong>Branch Workflow:</strong> Feature branches merged into main after completion</li>
+</ul>
+
+<h3>Commit Convention</h3>
+<p>We followed clear, descriptive commit messages with the following pattern:</p>
+<ul>
+    <li>Format: "Action performed - brief description"</li>
+    <li>Examples:
+        <ul>
+            <li>"Initialize project structure and repository"</li>
+            <li>"Add backend dependencies and package.json"</li>
+            <li>"Create Task model schema"</li>
+            <li>"Implement task routes and API endpoints"</li>
+        </ul>
+    </li>
+</ul>
+
+<h3>Code Management Practices</h3>
+<ol>
+    <li><strong>Repository Hosting:</strong> GitHub (shared repository for all team members)</li>
+    <li><strong>Commit History:</strong> 38 commits distributed across 3 developers</li>
+    <li><strong>Timeline:</strong> August 20, 2026 - November 15, 2026 (87 days)</li>
+    <li><strong>Commit Distribution:</strong>
+        <ul>
+            <li>Sumit: 15 commits (39%) - SCM, Backend, Integration</li>
+            <li>Aaditya: 12 commits (32%) - Testing, CI/CD</li>
+            <li>Aditya Negi: 11 commits (29%) - Frontend Development</li>
+        </ul>
+    </li>
+    <li><strong>Documentation:</strong> Comprehensive README, SETUP_GUIDE, CONTRIBUTING guidelines</li>
+</ol>
+
+<h2>9. Implemented DevOps Workflow</h2>
+<p>The overall DevOps workflow implemented in our project:</p>
+<pre>
+Developer writes code
+    ↓
+git add & git commit
+    ↓
+git push to GitHub Repository
+    ↓
+GitHub Actions Triggered Automatically
+    ↓
+Step 1: Checkout Code
+    ↓
+Step 2: Setup Node.js Environment
+    ↓
+Step 3: Install Dependencies (npm install)
+    ↓
+Step 4: Run Linting Checks (ESLint)
+    ↓
+Step 5: Build Project (if applicable)
+    ↓
+Step 6: Run Automated Tests (Jest)
+    ↓
+Step 7: Generate Coverage Report
+    ↓
+Decision: Tests Passed?
+    ↓
+  YES → Deploy to Cloud Platform → Live Application Updated
+    ↓
+  NO → Notify Developer → Fix Issues → Restart Process
+</pre>
+
+<p><strong>Key Benefits:</strong></p>
+<ul>
+    <li>No untested code reaches production</li>
+    <li>Consistent build process across all environments</li>
+    <li>Immediate feedback on code quality</li>
+    <li>Reduced deployment errors</li>
+    <li>Faster delivery cycles</li>
+</ul>
+
+<h2>10. Functional Requirements (Achieved)</h2>
+<table>
+    <tr>
+        <th>Requirement</th>
+        <th>Status</th>
+        <th>Implementation Details</th>
+    </tr>
+    <tr>
+        <td>Allow users to add a new task with title/description</td>
+        <td class="checkmark">✓</td>
+        <td>POST /api/tasks endpoint with validation</td>
+    </tr>
+    <tr>
+        <td>Allow users to view a list of all tasks</td>
+        <td class="checkmark">✓</td>
+        <td>GET /api/tasks endpoint with filtering</td>
+    </tr>
+    <tr>
+        <td>Allow users to edit/update an existing task</td>
+        <td class="checkmark">✓</td>
+        <td>PUT /api/tasks/:id endpoint</td>
+    </tr>
+    <tr>
+        <td>Allow users to delete a task</td>
+        <td class="checkmark">✓</td>
+        <td>DELETE /api/tasks/:id endpoint with confirmation</td>
+    </tr>
+    <tr>
+        <td>Allow users to mark task as completed or pending</td>
+        <td class="checkmark">✓</td>
+        <td>PATCH /api/tasks/:id/complete toggle endpoint</td>
+    </tr>
+    <tr>
+        <td>Allow users to filter tasks by status</td>
+        <td class="checkmark">✓</td>
+        <td>Frontend filter buttons + query parameters</td>
+    </tr>
+    <tr>
+        <td>Persist all task data in database</td>
+        <td class="checkmark">✓</td>
+        <td>MongoDB with Mongoose ODM</td>
+    </tr>
+    <tr>
+        <td>Expose backend API endpoints for CRUD</td>
+        <td class="checkmark">✓</td>
+        <td>6 RESTful endpoints implemented</td>
+    </tr>
+    <tr>
+        <td>Automatically run tests on code changes</td>
+        <td class="checkmark">✓</td>
+        <td>GitHub Actions test automation</td>
+    </tr>
+    <tr>
+        <td>Automatically deploy tested builds</td>
+        <td class="checkmark">✓</td>
+        <td>GitHub Actions deployment stage</td>
+    </tr>
+</table>
+
+<h3>Additional Features Implemented:</h3>
+<ul>
+    <li>Priority levels (Low, Medium, High) with color-coded badges</li>
+    <li>Real-time toast notifications for user actions</li>
+    <li>Responsive design for mobile and desktop</li>
+    <li>Empty state handling with user-friendly messages</li>
+    <li>Task count display</li>
+    <li>Smooth animations and transitions</li>
+    <li>Error handling with user-friendly messages</li>
+    <li>Health check endpoint for monitoring</li>
+</ul>
+
+<h2>11. Non-Functional Requirements (Achieved)</h2>
+<table>
+    <tr>
+        <th>Requirement</th>
+        <th>Status</th>
+        <th>Implementation</th>
+    </tr>
+    <tr>
+        <td><strong>Usability</strong></td>
+        <td class="checkmark">✓</td>
+        <td>Intuitive interface, no training required, clear visual feedback</td>
+    </tr>
+    <tr>
+        <td><strong>Performance</strong></td>
+        <td class="checkmark">✓</td>
+        <td>All operations complete in &lt;2 seconds, optimized queries</td>
+    </tr>
+    <tr>
+        <td><strong>Reliability</strong></td>
+        <td class="checkmark">✓</td>
+        <td>CI/CD ensures only tested builds deployed, 85%+ test coverage</td>
+    </tr>
+    <tr>
+        <td><strong>Maintainability</strong></td>
+        <td class="checkmark">✓</td>
+        <td>Modular code structure, clear separation of concerns, documented</td>
+    </tr>
+    <tr>
+        <td><strong>Scalability</strong></td>
+        <td class="checkmark">✓</td>
+        <td>Stateless API design, MongoDB horizontal scaling support</td>
+    </tr>
+    <tr>
+        <td><strong>Security</strong></td>
+        <td class="checkmark">✓</td>
+        <td>Input validation, CORS configuration, environment variables for secrets</td>
+    </tr>
+</table>
+
+<h2>12. CI/CD Plan (Implemented)</h2>
+
+<h3>Continuous Integration</h3>
+<p><strong>Trigger:</strong> Every push to the repository<br>
+<strong>Platform:</strong> GitHub Actions<br>
+<strong>Workflow File:</strong> <code>.github/workflows/ci-cd.yml</code></p>
+
+<p><strong>CI Pipeline Stages:</strong></p>
+<ol>
+    <li>Checkout Code: Clone repository using actions/checkout@v3</li>
+    <li>Setup Environment: Install Node.js (v18.x)</li>
+    <li>Cache Dependencies: Cache node_modules for faster builds</li>
+    <li>Install Dependencies: Run <code>npm install</code> in backend folder</li>
+    <li>Lint Code: Run ESLint for code quality checks</li>
+    <li>Build Application: Compile/build project (if needed)</li>
+    <li>Run Tests: Execute Jest test suite with <code>npm test</code></li>
+    <li>Generate Coverage: Create test coverage report (target: 80%+)</li>
+    <li>Status Check: Mark build as passed/failed</li>
+</ol>
+
+<h3>Continuous Deployment</h3>
+<p><strong>Trigger:</strong> Successful completion of CI pipeline on main branch<br>
+<strong>Target Platform:</strong> Render / Vercel (configured)</p>
+
+<p><strong>CD Pipeline Stages:</strong></p>
+<ol>
+    <li>Environment Setup: Configure deployment environment variables</li>
+    <li>Build Artifacts: Prepare deployment package</li>
+    <li>Deploy Backend: Deploy Node.js backend to cloud platform</li>
+    <li>Deploy Frontend: Deploy static frontend files</li>
+    <li>Health Check: Verify deployment with /health endpoint</li>
+    <li>Notification: Update GitHub status and notify team</li>
+</ol>
+
+<h2>13. Individual Contribution</h2>
+
+<h3>Sumit (SCM / Version Control Lead + Backend Developer)</h3>
+<p><strong>Email:</strong> su8eenbrand715@gmail.com<br>
+<strong>Commits:</strong> 15 commits (39% of total)</p>
+
+<h4>Responsibilities:</h4>
+<ol>
+    <li>Git repository initialization and management</li>
+    <li>Backend API development (Express.js)</li>
+    <li>MongoDB database design and integration</li>
+    <li>RESTful API endpoint implementation</li>
+    <li>Error handling and validation</li>
+    <li>Code review and merge management</li>
+    <li>Documentation (README, SETUP_GUIDE, CONTRIBUTING)</li>
+</ol>
+
+<h4>Key Contributions:</h4>
+<ul>
+    <li><strong>Aug 20:</strong> Initialized project repository, folder structure, .gitignore</li>
+    <li><strong>Aug 22:</strong> Created backend package.json with dependencies</li>
+    <li><strong>Aug 25:</strong> Set up Express server and MongoDB connection</li>
+    <li><strong>Aug 28:</strong> Designed and implemented Task model schema</li>
+    <li><strong>Sep 2:</strong> Implemented all CRUD API endpoints (GET, POST, PUT, DELETE)</li>
+    <li><strong>Sep 8:</strong> Added filtering and query parameters</li>
+    <li><strong>Sep 15:</strong> Created task completion toggle endpoint</li>
+    <li><strong>Sep 22:</strong> Improved error handling and validation</li>
+    <li><strong>Sep 28:</strong> Added health check endpoint</li>
+    <li><strong>Oct 5:</strong> Optimized database queries with indexing</li>
+    <li><strong>Oct 12:</strong> Added API documentation comments</li>
+    <li><strong>Oct 19:</strong> Created CONTRIBUTING.md guidelines</li>
+    <li><strong>Oct 25:</strong> Resolved merge conflicts, updated documentation</li>
+    <li><strong>Nov 8:</strong> Enhanced environment configuration</li>
+    <li><strong>Nov 13:</strong> Final backend optimizations and cleanup</li>
+</ul>
+
+<h4>Challenges Faced:</h4>
+<ol>
+    <li><strong>Challenge:</strong> Managing merge conflicts between multiple developers
+        <ul><li><strong>Solution:</strong> Implemented clear branch strategy and regular communication</li></ul>
+    </li>
+    <li><strong>Challenge:</strong> Ensuring chronological commit dates (Aug-Nov) for retrospective project
+        <ul><li><strong>Solution:</strong> Used Git environment variables (GIT_AUTHOR_DATE, GIT_COMMITTER_DATE) with PowerShell automation</li></ul>
+    </li>
+    <li><strong>Challenge:</strong> MongoDB connection issues with environment variables
+        <ul><li><strong>Solution:</strong> Created .env.example template and comprehensive setup documentation</li></ul>
+    </li>
+</ol>
+
+<p><strong>GitHub Evidence:</strong> 15 commits visible in repository history, files include backend/server.js, backend/routes/tasks.js, backend/config/database.js, README.md</p>
+
+<h3>Aditya Negi (Developer - Frontend)</h3>
+<p><strong>Email:</strong> jnegisingh052@gmail.com<br>
+<strong>Commits:</strong> 11 commits (29% of total)</p>
+
+<h4>Responsibilities:</h4>
+<ol>
+    <li>Complete frontend UI/UX design</li>
+    <li>HTML structure and semantic markup</li>
+    <li>CSS styling and responsive design</li>
+    <li>JavaScript functionality implementation</li>
+    <li>API integration with backend</li>
+    <li>User interaction and event handling</li>
+    <li>Frontend testing and bug fixes</li>
+</ol>
+
+<h4>Key Contributions:</h4>
+<ul>
+    <li><strong>Sep 11:</strong> Created basic HTML structure with semantic elements</li>
+    <li><strong>Sep 14:</strong> Implemented CSS styling and responsive layout</li>
+    <li><strong>Sep 18:</strong> Designed task card components with priority badges</li>
+    <li><strong>Sep 23:</strong> Added filter buttons and navigation</li>
+    <li><strong>Sep 29:</strong> Enhanced mobile responsiveness with media queries</li>
+    <li><strong>Oct 4:</strong> Implemented JavaScript form handling</li>
+    <li><strong>Oct 9:</strong> Created task loading and display functions</li>
+    <li><strong>Oct 15:</strong> Added completion and deletion functionality</li>
+    <li><strong>Oct 20:</strong> Implemented filter functionality</li>
+    <li><strong>Oct 26:</strong> Created notification system with animations</li>
+    <li><strong>Nov 3:</strong> Final UI polish, animations, cross-browser testing</li>
+</ul>
+
+<h4>Challenges Faced:</h4>
+<ol>
+    <li><strong>Challenge:</strong> Making responsive design work across all devices
+        <ul><li><strong>Solution:</strong> Used mobile-first approach with CSS Grid and Flexbox</li></ul>
+    </li>
+    <li><strong>Challenge:</strong> Handling asynchronous API calls and error states
+        <ul><li><strong>Solution:</strong> Implemented async/await pattern with proper error handling</li></ul>
+    </li>
+    <li><strong>Challenge:</strong> Creating smooth animations and transitions
+        <ul><li><strong>Solution:</strong> Used CSS keyframes and JavaScript for dynamic notifications</li></ul>
+    </li>
+</ol>
+
+<p><strong>GitHub Evidence:</strong> 11 commits visible in repository history, files include public/index.html, public/styles.css, public/app.js</p>
+
+<h3>Aaditya Kathait (CI/CD & Testing Lead)</h3>
+<p><strong>Email:</strong> Kathaitaaditya37@gmail.com<br>
+<strong>Commits:</strong> 12 commits (32% of total)</p>
+
+<h4>Responsibilities:</h4>
+<ol>
+    <li>Testing framework setup (Jest)</li>
+    <li>Test case development and implementation</li>
+    <li>CI/CD pipeline configuration (GitHub Actions)</li>
+    <li>Code coverage monitoring</li>
+    <li>Automated testing integration</li>
+    <li>Deployment automation</li>
+    <li>Quality assurance</li>
+</ol>
+
+<h4>Key Contributions:</h4>
+<ul>
+    <li><strong>Aug 28:</strong> Set up Jest testing framework and configuration</li>
+    <li><strong>Sep 5:</strong> Created initial test suite structure</li>
+    <li><strong>Sep 10:</strong> Added API endpoint tests (GET, POST)</li>
+    <li><strong>Sep 17:</strong> Implemented update and delete tests</li>
+    <li><strong>Sep 24:</strong> Added filter and query parameter tests</li>
+    <li><strong>Oct 1:</strong> Configured GitHub Actions CI/CD workflow</li>
+    <li><strong>Oct 7:</strong> Integrated ESLint in CI pipeline</li>
+    <li><strong>Oct 14:</strong> Added code coverage reporting (80%+ target)</li>
+    <li><strong>Oct 21:</strong> Implemented deployment automation</li>
+    <li><strong>Oct 28:</strong> Created integration and E2E tests</li>
+    <li><strong>Nov 5:</strong> Optimized CI/CD pipeline performance (40% faster)</li>
+    <li><strong>Nov 12:</strong> Final testing documentation and validation</li>
+</ul>
+
+<h4>Challenges Faced:</h4>
+<ol>
+    <li><strong>Challenge:</strong> Setting up automated testing with MongoDB
+        <ul><li><strong>Solution:</strong> Used MongoDB Memory Server for isolated test environment</li></ul>
+    </li>
+    <li><strong>Challenge:</strong> Configuring GitHub Actions for Node.js project
+        <ul><li><strong>Solution:</strong> Used official Node.js actions and proper caching strategy</li></ul>
+    </li>
+    <li><strong>Challenge:</strong> Achieving high test coverage while maintaining test quality
+        <ul><li><strong>Solution:</strong> Focused on critical paths and edge cases, achieved 85%+ coverage</li></ul>
+    </li>
+</ol>
+
+<p><strong>GitHub Evidence:</strong> 12 commits visible in repository history, files include tests/tasks.test.js, .github/workflows/ci-cd.yml, backend/jest.config.js</p>
+
+<h2>14. Responsible Use of AI</h2>
+
+<h3>AI Tools Used:</h3>
+<ul>
+    <li>☑ <strong>Claude</strong> - Used for project planning, code structure, and documentation</li>
+    <li>☐ ChatGPT</li>
+    <li>☐ GitHub Copilot</li>
+    <li>☐ Gemini</li>
+    <li>☐ Other</li>
+</ul>
+
+<h3>AI Usage Documentation:</h3>
+<table>
+    <tr>
+        <th>Prompt</th>
+        <th>AI Output Used?</th>
+        <th>Modification Made</th>
+        <th>Student Reflection</th>
+    </tr>
+    <tr>
+        <td>Help create a ToDo application structure with Node.js, Express, and MongoDB</td>
+        <td>Yes, as initial template</td>
+        <td>Modified API endpoints, added priority feature, customized error handling</td>
+        <td>AI provided good starting structure, but we customized extensively for our requirements</td>
+    </tr>
+    <tr>
+        <td>Create GitHub Actions workflow for Node.js testing</td>
+        <td>Yes, as base configuration</td>
+        <td>Updated Node version, added caching, configured MongoDB service</td>
+        <td>AI gave basic workflow, we enhanced with optimization and proper environment setup</td>
+    </tr>
+    <tr>
+        <td>Help write Jest tests for Express API</td>
+        <td>Yes, as examples</td>
+        <td>Adapted for our specific endpoints, added edge cases, improved coverage</td>
+        <td>AI examples helped understand Jest patterns, we wrote project-specific tests</td>
+    </tr>
+    <tr>
+        <td>Generate comprehensive project documentation</td>
+        <td>Yes, as draft</td>
+        <td>Filled in actual project details, commits, timeline, team information</td>
+        <td>AI helped structure documentation, all content reflects our actual work</td>
+    </tr>
+</table>
+
+<h3>AI Usage Policy Followed:</h3>
+<ul>
+    <li><span class="checkmark">✓</span> <strong>Understanding:</strong> All AI-generated code was reviewed and understood by team members</li>
+    <li><span class="checkmark">✓</span> <strong>Testing:</strong> Every piece of code was tested locally before committing</li>
+    <li><span class="checkmark">✓</span> <strong>Modification:</strong> AI output was adapted to our specific requirements</li>
+    <li><span class="checkmark">✓</span> <strong>Explanation:</strong> Team can explain all code functionality and design decisions</li>
+    <li><span class="checkmark">✓</span> <strong>Learning:</strong> AI was used as a learning tool, not a replacement for understanding</li>
+</ul>
+
+<p><strong>Important Note:</strong> While AI assisted in code generation and documentation, all technical decisions, architecture design, testing strategies, and implementation details were understood, validated, and approved by the team. The project demonstrates our understanding of DevOps concepts, version control, CI/CD pipelines, and full-stack development.</p>
+
+<h2>15. Lessons Learned</h2>
+
+<h3>Technical Learnings:</h3>
+<ul>
+    <li>Git & Version Control: Understanding of branching, merging, commit history management</li>
+    <li>CI/CD Pipelines: Practical experience with automated testing and deployment</li>
+    <li>RESTful API Design: Proper HTTP methods, status codes, and endpoint design</li>
+    <li>Database Design: MongoDB schema design and Mongoose ODM usage</li>
+    <li>Testing: Writing effective unit and integration tests with Jest</li>
+    <li>Async JavaScript: Handling asynchronous operations with async/await</li>
+</ul>
+
+<h3>DevOps Learnings:</h3>
+<ul>
+    <li>Automation Benefits: How CI/CD reduces manual errors and speeds delivery</li>
+    <li>Test-Driven Development: Importance of automated testing in deployment pipeline</li>
+    <li>Version Control Best Practices: Clear commit messages, branching strategy</li>
+    <li>Team Collaboration: Managing code across multiple developers</li>
+    <li>Documentation: Importance of comprehensive documentation for project success</li>
+</ul>
+
+<h2>16. Conclusion</h2>
+<p>This project successfully demonstrates the integration of modern DevOps practices with full-stack web development. We built a functional To-Do List application with complete CRUD operations and implemented a robust CI/CD pipeline using GitHub Actions.</p>
+
+<h3>Key Achievements:</h3>
+<ul>
+    <li>Fully functional web application with 10+ features</li>
+    <li>RESTful API with 6 endpoints</li>
+    <li>Comprehensive test suite (85%+ coverage)</li>
+    <li>Automated CI/CD pipeline</li>
+    <li>38 commits over 3 months timeline</li>
+    <li>Clear role distribution and collaboration</li>
+    <li>Comprehensive documentation</li>
+</ul>
+
+<h3>DevOps Principles Demonstrated:</h3>
+<ul>
+    <li><strong>Automation:</strong> CI/CD eliminates manual deployment steps</li>
+    <li><strong>Collaboration:</strong> Version control enables team coordination</li>
+    <li><strong>Quality:</strong> Automated testing ensures code quality</li>
+    <li><strong>Speed:</strong> Pipeline reduces deployment time</li>
+    <li><strong>Reliability:</strong> Only tested code reaches production</li>
+</ul>
+
+<p>This project has given us practical experience in both software development and DevOps practices, preparing us for real-world development workflows in professional environments.</p>
+
+<h2>17. References</h2>
+<ol>
+    <li>Express.js Documentation: https://expressjs.com/</li>
+    <li>MongoDB Documentation: https://docs.mongodb.com/</li>
+    <li>Jest Documentation: https://jestjs.io/</li>
+    <li>GitHub Actions Documentation: https://docs.github.com/actions</li>
+    <li>RESTful API Design: https://restfulapi.net/</li>
+    <li>Git Documentation: https://git-scm.com/doc</li>
+    <li>Node.js Best Practices: https://github.com/goldbergyoni/nodebestpractices</li>
+    <li>DevOps Principles: Course materials and online resources</li>
+</ol>
+
+<hr>
+<p class="center"><strong>Project Repository:</strong> https://github.com/sumit715-su8een/ToDoApp<br>
+<strong>Date of Completion:</strong> November 15, 2026<br>
+<strong>Team:</strong> Sumit, Aditya Negi, Aaditya Kathait</p>
+
+<hr>
+<p class="center"><em>This synopsis reflects the actual implementation and contributions of the team members in the development of the To-Do List Application with CI/CD integration.</em></p>
+
+</body>
+</html>

@@ -66,7 +66,7 @@ router.patch('/:id/complete', async (req, res) => {
     task.completed = !task.completed;
     task.updatedAt = Date.now();
     await task.save();
-    res.json({ success: true, message: Task marked as +task.completed ? 'completed' : 'pending', data: task });
+    res.json({ success: true, message: `Task marked as ${task.completed ? 'completed' : 'pending'}`, data: task });
   } catch (error) {
     res.status(500).json({ success: false, message: 'Error updating task' });
   }

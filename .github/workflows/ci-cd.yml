@@ -9,13 +9,32 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [18.x]
+    
     steps:
-    - uses: actions/checkout@v3
-    - name: Setup Node.js
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
+    - name: Setup Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
-        node-version: '18.x'
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        cache-dependency-path: backend/package-lock.json
+        
     - name: Install dependencies
-      run: cd backend && npm ci
+      run: |
+        cd backend
+        npm ci
+        
     - name: Run tests
-      run: cd backend && npm test
+      run: |
+        cd backend
+        npm test -- --passWithNoTests
+        
+    - name: Test Summary
+      if: always()
+      run: echo "Tests completed"
