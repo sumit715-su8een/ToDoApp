@@ -1,5 +1,9 @@
 ﻿# ToDo List Application
 
+[![CI/CD Pipeline](https://github.com/sumit715-su8een/ToDoApp/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/sumit715-su8een/ToDoApp/actions/workflows/ci-cd.yml)
+
+## 🚀 DevOps Project with Automated CI/CD
+
 A full-stack ToDo List application with automated CI/CD pipeline built as part of DevOps Fundamentals course.
 
 ## Team Members
