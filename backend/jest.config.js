@@ -1,5 +1,6 @@
 ﻿module.exports = {
   testEnvironment: 'node',
+  testMatch: ['**/tests/**/*.test.js'],
   coveragePathIgnorePatterns: ['/node_modules/'],
   testPathIgnorePatterns: ['/node_modules/'],
   verbose: true,
