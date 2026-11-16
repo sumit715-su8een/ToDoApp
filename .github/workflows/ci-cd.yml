@@ -10,31 +10,29 @@ jobs:
   test:
     runs-on: ubuntu-latest
     
-    strategy:
-      matrix:
-        node-version: [18.x]
-    
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
       
-    - name: Setup Node.js ${{ matrix.node-version }}
+    - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-        cache-dependency-path: backend/package-lock.json
+        node-version: '18.x'
         
     - name: Install dependencies
       run: |
         cd backend
-        npm ci
+        npm install
         
     - name: Run tests
       run: |
         cd backend
-        npm test -- --passWithNoTests
-        
-    - name: Test Summary
-      if: always()
-      run: echo "Tests completed"
+        npm test
+      
+    - name: Build status
+      if: success()
+      run: echo "✅ All tests passed successfully!"
+      
+    - name: Build failed
+      if: failure()
+      run: echo "❌ Tests failed. Please check the logs."
