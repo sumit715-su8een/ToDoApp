@@ -3,39 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ToDo List App</title>
+    <title>TaskFlow - Premium Task Management</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+        <div class="grid-overlay"></div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Main Container -->
     <div class="container">
-        <header>
-            <h1>ToDo List</h1>
-            <p>Stay organized, get things done</p>
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <path d="M16 2L4 8V14C4 22 10 28 16 30C22 28 28 22 28 14V8L16 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 16L15 19L21 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <h1>TaskFlow</h1>
+                </div>
+                <div class="header-stats">
+                    <div class="stat-item">
+                        <span class="stat-value" id="totalTasks">0</span>
+                        <span class="stat-label">Total</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="completedTasks">0</span>
+                        <span class="stat-label">Done</span>
+                    </div>
+                </div>
+            </div>
         </header>
-        <div class="add-task">
-            <h2>Add New Task</h2>
-            <form id="taskForm">
-                <input type="text" id="taskTitle" placeholder="Task title" required maxlength="200">
-                <textarea id="taskDescription" placeholder="Description" maxlength="1000" rows="3"></textarea>
-                <select id="taskPriority">
-                    <option value="low">Low Priority</option>
-                    <option value="medium" selected>Medium Priority</option>
-                    <option value="high">High Priority</option>
-                </select>
-                <button type="submit" class="btn">Add Task</button>
-            </form>
-        </div>
-        <div class="filter-section">
-            <h2>Tasks</h2>
-            <div class="filters">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="pending">Pending</button>
-                <button class="filter-btn" data-filter="completed">Completed</button>
+        
+        <!-- Filter Tabs -->
+        <div class="filter-container">
+            <div class="filter-wrapper">
+                <button class="filter-btn active" data-filter="all">
+                    <span class="filter-icon">📋</span>
+                    <span>All Tasks</span>
+                </button>
+                <button class="filter-btn" data-filter="pending">
+                    <span class="filter-icon">⏳</span>
+                    <span>Pending</span>
+                </button>
+                <button class="filter-btn" data-filter="completed">
+                    <span class="filter-icon">✓</span>
+                    <span>Completed</span>
+                </button>
+                <div class="filter-indicator"></div>
             </div>
         </div>
-        <div id="taskList" class="task-list"></div>
-        <div id="emptyState" class="empty">No tasks yet! Add one to start.</div>
+
+        <!-- Task Input Form -->
+        <form id="taskForm" class="task-form">
+            <div class="form-card">
+                <div class="form-header">
+                    <h3>Create New Task</h3>
+                </div>
+                <div class="form-body">
+                    <div class="input-group">
+                        <input type="text" id="taskTitle" placeholder="What needs to be done?" required autocomplete="off">
+                        <label for="taskTitle">Task Title</label>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" id="taskDescription" placeholder="Add more details..." autocomplete="off">
+                        <label for="taskDescription">Description</label>
+                    </div>
+                    <div class="form-row">
+                        <div class="priority-selector">
+                            <label class="priority-label">Priority</label>
+                            <div class="priority-options">
+                                <input type="radio" name="priority" id="priority-low" value="low">
+                                <label for="priority-low" class="priority-option low">
+                                    <span class="priority-dot"></span>
+                                    Low
+                                </label>
+                                <input type="radio" name="priority" id="priority-medium" value="medium" checked>
+                                <label for="priority-medium" class="priority-option medium">
+                                    <span class="priority-dot"></span>
+                                    Medium
+                                </label>
+                                <input type="radio" name="priority" id="priority-high" value="high">
+                                <label for="priority-high" class="priority-option high">
+                                    <span class="priority-dot"></span>
+                                    High
+                                </label>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-add">
+                            <span class="btn-icon">+</span>
+                            <span>Add Task</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <!-- Task List -->
+        <div class="task-list-container">
+            <div id="taskList" class="task-list"></div>
+            <div id="emptyState" class="empty-state">
+                <div class="empty-icon">
+                    <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
+                        <circle cx="60" cy="60" r="50" stroke="currentColor" stroke-width="2" stroke-dasharray="4 4"/>
+                        <path d="M40 60L55 75L80 50" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <h3>No tasks yet</h3>
+                <p>Create your first task to get started on your productivity journey</p>
+            </div>
+        </div>
     </div>
+
     <script src="app.js"></script>
 </body>
 </html>

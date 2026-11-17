@@ -6,7 +6,40 @@ let currentFilter = 'all';
 document.addEventListener('DOMContentLoaded', () => {
     loadTasks();
     setupEventListeners();
+    initCustomCursor();
 });
+
+// Custom Cursor
+function initCustomCursor() {
+    const cursor = document.querySelector('.cursor');
+    const cursorFollower = document.querySelector('.cursor-follower');
+    
+    if (!cursor || !cursorFollower) return;
+    
+    let mouseX = 0, mouseY = 0;
+    let followerX = 0, followerY = 0;
+    
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        cursor.style.left = mouseX + 'px';
+        cursor.style.top = mouseY + 'px';
+    });
+    
+    function animateFollower() {
+        const distX = mouseX - followerX;
+        const distY = mouseY - followerY;
+        
+        followerX += distX * 0.1;
+        followerY += distY * 0.1;
+        
+        cursorFollower.style.left = followerX + 'px';
+        cursorFollower.style.top = followerY + 'px';
+        
+        requestAnimationFrame(animateFollower);
+    }
+    animateFollower();
+}
 
 // Setup all event listeners
 function setupEventListeners() {
@@ -17,8 +50,8 @@ function setupEventListeners() {
     document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            e.target.classList.add('active');
-            currentFilter = e.target.dataset.filter;
+            e.target.closest('.filter-btn').classList.add('active');
+            currentFilter = e.target.closest('.filter-btn').dataset.filter;
             loadTasks();
         });
     });
@@ -37,11 +70,21 @@ async function loadTasks() {
         
         if (data.success) {
             displayTasks(data.data);
+            updateStats(data.data);
         }
     } catch (error) {
         console.error('Error loading tasks:', error);
         showError('Failed to load tasks. Make sure backend is running.');
     }
+}
+
+// Update header stats
+function updateStats(tasks) {
+    const total = tasks.length;
+    const completed = tasks.filter(t => t.completed).length;
+    
+    document.getElementById('totalTasks').textContent = total;
+    document.getElementById('completedTasks').textContent = completed;
 }
 
 // Display tasks in UI
@@ -51,9 +94,9 @@ function displayTasks(tasks) {
     
     if (tasks.length === 0) {
         taskList.innerHTML = '';
-        emptyState.style.display = 'block';
+        emptyState.classList.add('show');
     } else {
-        emptyState.style.display = 'none';
+        emptyState.classList.remove('show');
         taskList.innerHTML = tasks.map(task => createTaskHTML(task)).join('');
     }
 }
@@ -72,9 +115,9 @@ function createTaskHTML(task) {
             ${task.description ? `<p class="task-desc">${escapeHtml(task.description)}</p>` : ''}
             <div class="task-actions">
                 <button onclick="toggleComplete('${task._id}')" class="btn-complete">
-                    ${task.completed ? 'Mark Pending' : 'Complete'}
+                    ${task.completed ? '↩ Mark Pending' : '✓ Complete'}
                 </button>
-                <button onclick="deleteTask('${task._id}')" class="btn-delete">Delete</button>
+                <button onclick="deleteTask('${task._id}')" class="btn-delete">🗑 Delete</button>
             </div>
         </div>
     `;
@@ -86,7 +129,7 @@ async function handleAddTask(e) {
     
     const title = document.getElementById('taskTitle').value.trim();
     const description = document.getElementById('taskDescription').value.trim();
-    const priority = document.getElementById('taskPriority').value;
+    const priority = document.querySelector('input[name="priority"]:checked').value;
     
     if (!title) {
         showError('Please enter a task title');
@@ -105,6 +148,7 @@ async function handleAddTask(e) {
         if (data.success) {
             showSuccess('Task added successfully!');
             e.target.reset();
+            document.getElementById('priority-medium').checked = true;
             loadTasks();
         } else {
             showError(data.message || 'Failed to add task');
@@ -187,60 +231,47 @@ function showNotification(message, type = 'info') {
         position: fixed;
         top: 20px;
         right: 20px;
-        padding: 15px 25px;
-        background: ${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#3b82f6'};
+        padding: 1rem 1.5rem;
+        background: ${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#6366f1'};
         color: white;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         z-index: 10000;
-        animation: slideIn 0.3s ease-out;
+        animation: slideInRight 0.4s ease;
         font-weight: 500;
+        backdrop-filter: blur(10px);
     `;
     
     document.body.appendChild(notification);
     
     setTimeout(() => {
-        notification.style.animation = 'slideOut 0.3s ease-out';
-        setTimeout(() => notification.remove(), 300);
+        notification.style.animation = 'slideOutRight 0.4s ease';
+        setTimeout(() => notification.remove(), 400);
     }, 3000);
 }
 
-// Add CSS for animations
+// Add animation keyframes
 const style = document.createElement('style');
 style.textContent = `
-    @keyframes slideIn {
-        from { transform: translateX(400px); opacity: 0; }
-        to { transform: translateX(0); opacity: 1; }
+    @keyframes slideInRight {
+        from { 
+            opacity: 0; 
+            transform: translateX(100px); 
+        }
+        to { 
+            opacity: 1; 
+            transform: translateX(0); 
+        }
     }
-    @keyframes slideOut {
-        from { transform: translateX(0); opacity: 1; }
-        to { transform: translateX(400px); opacity: 0; }
+    @keyframes slideOutRight {
+        from { 
+            opacity: 1; 
+            transform: translateX(0); 
+        }
+        to { 
+            opacity: 0; 
+            transform: translateX(100px); 
+        }
     }
-    .task-desc { color: #666; margin: 10px 0; }
-    .task-actions { margin-top: 15px; display: flex; gap: 10px; }
-    .btn-complete, .btn-delete { 
-        padding: 8px 16px; 
-        border: none; 
-        border-radius: 6px; 
-        cursor: pointer; 
-        font-size: 0.9rem;
-        transition: all 0.3s;
-    }
-    .btn-complete { background: #10b981; color: white; }
-    .btn-complete:hover { background: #059669; }
-    .btn-delete { background: #ef4444; color: white; }
-    .btn-delete:hover { background: #dc2626; }
-    .task-item.completed { opacity: 0.6; }
-    .task-item.completed h3 { text-decoration: line-through; }
-    .priority-badge {
-        padding: 4px 12px;
-        border-radius: 12px;
-        font-size: 0.75rem;
-        font-weight: 600;
-        text-transform: uppercase;
-    }
-    .priority-badge.high { background: #fee2e2; color: #ef4444; }
-    .priority-badge.medium { background: #fef3c7; color: #f59e0b; }
-    .priority-badge.low { background: #d1fae5; color: #10b981; }
 `;
 document.head.appendChild(style);
