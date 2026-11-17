@@ -171,10 +171,11 @@ body {
     position: fixed;
     pointer-events: none;
     z-index: 9999;
-    transition: all 0.1s cubic-bezier(0.75, -0.5, 0.25, 1.5);
+    transition: all 0.15s cubic-bezier(0.75, -0.5, 0.25, 1.5);
     transform: translate(-50%, -50%);
     mix-blend-mode: screen;
     box-shadow: 0 0 20px var(--glow);
+    opacity: 0;
 }
 
 .cursor-follower {
@@ -185,17 +186,10 @@ body {
     position: fixed;
     pointer-events: none;
     z-index: 9998;
-    transition: transform 0.4s cubic-bezier(0.75, -0.5, 0.25, 1.5);
+    transition: none;
     transform: translate(-50%, -50%);
     box-shadow: 0 0 30px var(--glow), 0 0 60px var(--glow);
-}
-
-button:hover ~ .cursor,
-a:hover ~ .cursor,
-input:hover ~ .cursor {
-    transform: translate(-50%, -50%) scale(1.8);
-    background: radial-gradient(circle, rgba(99, 102, 241, 0.3), transparent);
-    border-color: var(--accent);
+    opacity: 0;
 }
 
 /* ===== CONTAINER ===== */

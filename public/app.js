@@ -18,27 +18,64 @@ function initCustomCursor() {
     
     let mouseX = 0, mouseY = 0;
     let followerX = 0, followerY = 0;
+    let isMoving = false;
     
     document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
+        isMoving = true;
+        
+        // Update cursor position immediately
         cursor.style.left = mouseX + 'px';
         cursor.style.top = mouseY + 'px';
+        cursor.style.opacity = '1';
+        cursorFollower.style.opacity = '1';
     });
     
+    // Hide cursor when leaving window
+    document.addEventListener('mouseleave', () => {
+        cursor.style.opacity = '0';
+        cursorFollower.style.opacity = '0';
+    });
+    
+    document.addEventListener('mouseenter', () => {
+        cursor.style.opacity = '1';
+        cursorFollower.style.opacity = '1';
+    });
+    
+    // Animate follower with smooth easing
     function animateFollower() {
-        const distX = mouseX - followerX;
-        const distY = mouseY - followerY;
-        
-        followerX += distX * 0.1;
-        followerY += distY * 0.1;
-        
-        cursorFollower.style.left = followerX + 'px';
-        cursorFollower.style.top = followerY + 'px';
+        if (isMoving) {
+            const distX = mouseX - followerX;
+            const distY = mouseY - followerY;
+            
+            followerX += distX * 0.15;
+            followerY += distY * 0.15;
+            
+            cursorFollower.style.left = followerX + 'px';
+            cursorFollower.style.top = followerY + 'px';
+        }
         
         requestAnimationFrame(animateFollower);
     }
     animateFollower();
+    
+    // Add hover effects for interactive elements
+    const interactiveElements = document.querySelectorAll('button, a, input, textarea, select, .filter-btn, .task-item');
+    
+    interactiveElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            cursor.style.transform = 'translate(-50%, -50%) scale(1.8)';
+            cursor.style.borderColor = 'var(--accent)';
+            cursor.style.background = 'radial-gradient(circle, rgba(236, 72, 153, 0.3), transparent)';
+        });
+        
+        el.addEventListener('mouseleave', () => {
+            cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+            cursor.style.borderColor = 'var(--primary)';
+            cursor.style.background = 'transparent';
+        });
+    });
 }
 
 // Setup all event listeners
