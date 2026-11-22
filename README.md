@@ -5,8 +5,8 @@ A full-stack ToDo List application with automated CI/CD pipeline built as part o
 ## Team Members
 
 - **Sumit** - SCM/Version Control Lead & Backend Developer
-- **Aditya Negi** - Frontend Developer
-- **Aaditya** - CI/CD & Testing Lead
+- **Aditya Negi** - Frontend Developer & Backend Developer
+- **Aaditya** - CI/CD & Testing Lead & Backend Developer
 
 ## Tech Stack
 
